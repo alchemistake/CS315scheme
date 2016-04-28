@@ -88,3 +88,31 @@ x
 )
 
 (rlength2 '(A B C D ()))
+
+(define (eqlist l1 l2)
+  (cond
+   ((null? l1) (null? l2))
+   ((null? l2) #f)
+   ((eq? (car l1)(car l2)) (eqlist (cdr l1) (cdr l2)))
+   (else #f)
+   )
+)
+
+(eqlist '(A B C D) '(A B C D))
+(eqlist '(A B C D) '(A B C D E))
+(eqlist '((A B) C D E) '((A B) C D E))
+
+(define (eqlist2 l1 l2)
+  (cond
+   ((not (list? l1))(eq? l1 l2))
+   ((not (list? l2)) #f)
+   ((null? l1) (null? l2))
+   ((null? l2) #f)
+   ((eqlist2 (car l1) (car l2)) (eqlist2 (cdr l1)(cdr l2)))
+   (else #f)
+   )
+)
+
+(eqlist '(A B C D) '(A B C D))
+(eqlist '(A B C D) '(A B C D E))
+(eqlist2 '(('A 'B) C D E) '(('A 'B) C D E))
