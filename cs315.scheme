@@ -1,0 +1,90 @@
+(define (factorial n)
+  (if (or (eq? n 0) (eq? n 1))
+  	1
+  	(* n (factorial (- n 1)))
+  )
+)
+
+(define (leapYear n)
+ (cond
+  ((zero? (modulo n 400)) #t)
+  ((zero? (modulo n 100)) #f)
+  (else (zero? (modulo n 4)))
+ )
+)
+
+(define x 3)
+
+'x
+x
+
+(car '(A))
+(cdr '(A B C))
+
+(define x (list 'A 'B '(C D)))
+
+x
+'x
+
+(car (cdr '(A B)))
+
+(null? '())
+(null? ())
+(null? '(A))
+(null? 'A)
+
+
+(define (reversel l)
+  (if (null? l)
+     nil
+     (append (reversel (cdr l)) (list (car l)))
+  )
+)
+
+(reversel (list 'a 'b 'c))
+
+(cons 'A '())
+(list? (cons 'A '()))
+
+
+(cons '(A B C) '(D))
+(append '(A B C) '(D))
+
+(define x '(A B C (D E)))
+
+(length x)
+
+(define (length1 x)
+  (if (null? x)
+      0
+      (+ 1 (length1 (cdr x)))
+  )
+)
+
+(length1 x)
+
+(define (rlength x)
+  (if (list? x)
+      (if (null? x)
+          0
+          (+ (rlength(car x)) (rlength (cdr x)))
+      )
+      1
+  )
+)
+(rlength ())
+(rlength '())
+
+(rlength '(A B C D ()))
+
+(define (rlength2 x)
+      (if (null? x)
+          0
+          (if (list? x)
+          	(+ (rlength2(car x)) (rlength2 (cdr x)))
+            1
+          )
+      )
+)
+
+(rlength2 '(A B C D ()))
